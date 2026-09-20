@@ -8,42 +8,54 @@ SRC=src
 # Create necessary directories if they don't exist
 $(shell mkdir -p $(BIN) $(OBJ) $(LIB))
 
-# Default target
-all: runstack
+# this is for making files for my assignment only.
+# all: 
+all: ${BIN}/Exercise1_1 \
+     ${BIN}/Exercise1_2 \
+     ${BIN}/Exercise2_1_1 \
+     ${BIN}/Exercise2_1_2 \
+     ${BIN}/Exercise2_1_3 \
+     ${BIN}/Exercise2_2_1 \
+     ${BIN}/Exercise2_2_2 \
+     ${BIN}/Exercise2_2_3 \
+     ${SRC}/concurrent-compilation/parallel_compiler \
+     ${BIN}/spy
 
-# build bin/stack_test
-${OBJ}/stack_array.o: ${INC}/stack.h ${SRC}/stack_array.c
-	${CC} -c -o ${OBJ}/stack_array.o ${SRC}/stack_array.c -I${INC}
+# build answer for Exercise1
+${BIN}/Exercise1_1: ${SRC}/Exercise1_1.c
+	${CC} -o ${BIN}/Exercise1_1 ${SRC}/Exercise1_1.c
 
-${OBJ}/stack_test.o: ${INC}/stack.h ${SRC}/stack_test.c
-	${CC} -c -o ${OBJ}/stack_test.o ${SRC}/stack_test.c -I${INC}
+${BIN}/Exercise1_2: ${SRC}/Exercise1_2.c
+	${CC} -o ${BIN}/Exercise1_2 ${SRC}/Exercise1_2.c
 
-${BIN}/stack_test: ${OBJ}/stack_test.o ${OBJ}/stack_array.o
-	${CC} -o ${BIN}/stack_test ${OBJ}/stack_test.o ${OBJ}/stack_array.o
+# build answer for Exercise2
+${BIN}/Exercise2_1_1: ${SRC}/Exercise2_1_1.c
+	${CC} -o ${BIN}/Exercise2_1_1 ${SRC}/Exercise2_1_1.c
 
-# run stack_test
-runstack: ${BIN}/stack_test
-	echo "Testing Stack"
-	${BIN}/stack_test
+${BIN}/Exercise2_1_2: ${SRC}/Exercise2_1_2.c
+	${CC} -o ${BIN}/Exercise2_1_2 ${SRC}/Exercise2_1_2.c
 
+${BIN}/Exercise2_1_3: ${SRC}/Exercise2_1_3.c
+	${CC} -o ${BIN}/Exercise2_1_3 ${SRC}/Exercise2_1_3.c
 
-# build bin/libstack_test
-${LIB}/libstack.a: ${OBJ}/stack_list.o ${OBJ}/list_impl.o
-	ar rcv ${LIB}/libstack.a ${OBJ}/stack_list.o ${OBJ}/list_impl.o
-	ranlib ${LIB}/libstack.a
+${BIN}/Exercise2_2_1: ${SRC}/Exercise2_2_1.c
+	${CC} -o ${BIN}/Exercise2_2_1 ${SRC}/Exercise2_2_1.c
 
-${BIN}/libstack_test: ${OBJ}/stack_test.o ${LIB}/libstack.a
-	${CC} -o ${BIN}/stack_test ${OBJ}/stack_test.o -L${LIB} -lstack
+${BIN}/Exercise2_2_2: ${SRC}/Exercise2_2_2.c
+	${CC} -o ${BIN}/Exercise2_2_2 ${SRC}/Exercise2_2_2.c
 
-# test for Q3
-runlibstack: ${BIN}/libstack_test
-	echo "Testing Stack"
-	${BIN}/stack_test
+${BIN}/Exercise2_2_3: ${SRC}/Exercise2_2_3.c
+	${CC} -o ${BIN}/Exercise2_2_3 ${SRC}/Exercise2_2_3.c
 
-# test for Q4
-runlibfifo: # todo
+# build answer for Exercise3
+${BIN}/spy: ${SRC}/spy.c	
+	${CC} -o ${BIN}/spy ${SRC}/spy.c
 
-# Clean rule
-# !Be very careful to use "rm -rf"
+# build answer for Exercise4
+${SRC}/concurrent-compilation/parallel_compiler: ${SRC}/concurrent-compilation/parallel_compiler.c
+	${CC} -o ${SRC}/concurrent-compilation/parallel_compiler ${SRC}/concurrent-compilation/parallel_compiler.c
+
+# done...
+
 clean:
-	rm -f $(LIB)/* $(OBJ)/* $(BIN)/*
+	rm -f $(BIN)/* $(OBJ)/* $(LIB)/*
