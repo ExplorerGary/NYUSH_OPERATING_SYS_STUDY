@@ -22,7 +22,6 @@ int main() {
         // only child reaches here and continues the loop
     }
 
-    printf("PID = %d, PPID = %d\n", getpid(), getppid());
 
     return 0;
 }

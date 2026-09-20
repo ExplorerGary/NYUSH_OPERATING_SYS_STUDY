@@ -6,9 +6,7 @@
 
 int main(int argc, char **argv){
     // iteravtive create a main process and a lots of child process of this parent process
-
-    int N_CHILDREN =atoi(argv[1]); // as noted in the office hour, we will consider the N_CHILDREN obtained from the argv
-    
+    int N_CHILDREN =atoi(argv[1]); // this is a var to determind how mand child process is needed
     int i;
     for (i = 0; i < N_CHILDREN; i++){
         // create a child process'

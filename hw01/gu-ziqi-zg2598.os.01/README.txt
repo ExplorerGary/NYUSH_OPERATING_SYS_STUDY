@@ -46,9 +46,7 @@ src:
 =======================================================================================
 Compilation rules in the Makefile:
 
-we have two makefile in this repo, one is the "makefile," it will help run the fifo_test
-the other is "makefile_assignment," it's for compiling the answers to this assignment
-we put the parallel_compiler into the src/concurrent-compilation not the bin to follow the instructions about how it's called 
+// NO SPECIFIC RULES TO FOLLOW TO COMPILE AND RUN THE PROGRAM IN THIS SUBMISSION //
 
 [Please complete this part by describing what each make command does and which question it corresponds to.]
 
